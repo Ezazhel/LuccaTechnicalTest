@@ -14,6 +14,6 @@ namespace Lucca.Domain.Repositories
 
         void Update(T entity);
 
-        void Delate(T entity);
+        void Delete(T entity);
     }
 }

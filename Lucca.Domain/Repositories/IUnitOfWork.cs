@@ -5,6 +5,6 @@ namespace Lucca.Domain.Repositories
 {
     public interface IUnitOfWork
     {
-        Task SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

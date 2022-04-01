@@ -1,6 +1,9 @@
 ﻿namespace Lucca.Domain.Entities
 {
-    public class Category
+    public enum Category
     {
+        Restaurant,
+        Hotel,
+        Misc
     }
 }

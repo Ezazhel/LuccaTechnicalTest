@@ -32,8 +32,15 @@ namespace Lucca.Services
             throw new NotImplementedException();
         }
 
-        public async Task<ExpenseDto> GetByIdAsync(Guid expenseId, CancellationToken cancellationToken = default)
+        public async Task<ExpenseDto> GetByIdAsync(Guid userId, Guid expenseId, CancellationToken cancellationToken = default)
         {
+            var user = await _repositoryManager.UserRepository.GetByIdAsync(userId, cancellationToken);
+
+            if (user is null)
+            {
+                throw new UserNotFoundException(userId);
+            }
+
             var expense = await _repositoryManager.ExpenseRepository.GetByIdAsync(expenseId, cancellationToken);
 
             if (expense is null)
@@ -41,7 +48,10 @@ namespace Lucca.Services
                 throw new ExpenseNotFoundException(expenseId);
             }
 
-            return expense.ToExpenseDto();
+            var expenseDto = expense.ToExpenseDto();
+            expenseDto.User = user.GetFullName();
+
+            return expenseDto;
         }
 
         public async Task<ExpenseDto> InsertAsync(Guid userId, CreateExpenseDto createExpenseDto, CancellationToken cancellationToken = default)
@@ -55,13 +65,17 @@ namespace Lucca.Services
 
             var expense = createExpenseDto.ToExpense();
 
-            expense.User = user;
+            expense.UserId = user.Id;
 
             _repositoryManager.ExpenseRepository.Insert(expense);
 
             await _repositoryManager.UnitOfWork.SaveChangesAsync();
 
-            return expense.ToExpenseDto();
+            var expenseDto = expense.ToExpenseDto();
+
+            expenseDto.User = user.GetFullName();
+
+            return expenseDto;
         }
     }
 }

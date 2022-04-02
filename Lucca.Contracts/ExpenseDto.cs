@@ -4,6 +4,7 @@ namespace Lucca.Contracts
 {
     public sealed class ExpenseDto
     {
+        public Guid Id { get; set; }
         public string User { get; set; }
         public DateTime Date { get; set; }
         public string Category { get; set; }

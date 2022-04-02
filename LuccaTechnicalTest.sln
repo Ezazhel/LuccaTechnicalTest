@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucca.Contracts", "Lucca.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3CB81E73-6A4D-4635-AD90-681F6DAC6CA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucca.Persistence", "Persistence\Lucca.Persistence.csproj", "{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucca.Presentation", "Presentation\Lucca.Presentation.csproj", "{34316AF1-E741-4094-AE57-A19B7B010415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34316AF1-E741-4094-AE57-A19B7B010415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34316AF1-E741-4094-AE57-A19B7B010415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34316AF1-E741-4094-AE57-A19B7B010415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34316AF1-E741-4094-AE57-A19B7B010415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{9084C9AA-270F-43D9-A14E-8792172A9AFF} = {AFB84C0F-1E7E-4346-943D-4D8F93972EB4}
 		{43F67FCB-0953-4238-A0E0-8FB627FACDB8} = {AFB84C0F-1E7E-4346-943D-4D8F93972EB4}
 		{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1} = {3CB81E73-6A4D-4635-AD90-681F6DAC6CA0}
+		{34316AF1-E741-4094-AE57-A19B7B010415} = {3CB81E73-6A4D-4635-AD90-681F6DAC6CA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F94A7944-769E-4F81-9176-E979ACD3CA4F}

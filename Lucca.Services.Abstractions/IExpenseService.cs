@@ -13,7 +13,7 @@ namespace Lucca.Services.Abstractions
 
         Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default);
 
-        Task<ExpenseDto> GetByIdAsync(Guid expenseId, CancellationToken cancellationToken = default);
+        Task<ExpenseDto> GetByIdAsync(Guid userId, Guid expenseId, CancellationToken cancellationToken = default);
 
         Task<ExpenseDto> InsertAsync(Guid userId, CreateExpenseDto createExpenseDto, CancellationToken cancellationToken = default);
     }

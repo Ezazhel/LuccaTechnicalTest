@@ -9,12 +9,12 @@ namespace Lucca.Services.Extensions
         {
             return new ExpenseDto()
             {
+                Id = expense.Id,
                 Amount = expense.Amount,
                 Category = expense.Category.ToString(),
                 Comment = expense.Comment,
                 Currency_ISO = expense.Currency_ISO,
                 Date = expense.Date,
-                User = expense.User.GetFullName()
             };
         }
 

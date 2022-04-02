@@ -6,11 +6,7 @@ namespace Lucca.Domain.Exceptions
     [Serializable]
     public sealed class MissingCommentException : Exception
     {
-        public MissingCommentException()
-        {
-        }
-
-        public MissingCommentException(string message) : base(message)
+        public MissingCommentException() : base("The property Comment is mandatory to create an expense")
         {
         }
 

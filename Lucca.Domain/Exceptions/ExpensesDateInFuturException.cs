@@ -6,11 +6,7 @@ namespace Lucca.Domain.Exceptions
     [Serializable]
     public sealed class ExpensesDateInFuturException : Exception
     {
-        public ExpensesDateInFuturException()
-        {
-        }
-
-        public ExpensesDateInFuturException(string message) : base(message)
+        public ExpensesDateInFuturException() : base("The date can't be set for the future.")
         {
         }
 

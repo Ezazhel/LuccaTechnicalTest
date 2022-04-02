@@ -6,11 +6,7 @@ namespace Lucca.Domain.Exceptions
     [Serializable]
     public sealed class OutOfIntervalExpensesDateException : Exception
     {
-        public OutOfIntervalExpensesDateException()
-        {
-        }
-
-        public OutOfIntervalExpensesDateException(string message) : base(message)
+        public OutOfIntervalExpensesDateException() : base("The date can't be out of interval. The Interval is up to 3 month till now.")
         {
         }
 

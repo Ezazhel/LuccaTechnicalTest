@@ -6,11 +6,7 @@ namespace Lucca.Domain.Exceptions
     [Serializable]
     public sealed class CurrencyIsDifferentFromUserException : Exception
     {
-        public CurrencyIsDifferentFromUserException()
-        {
-        }
-
-        public CurrencyIsDifferentFromUserException(string message) : base(message)
+        public CurrencyIsDifferentFromUserException() : base("The currency for this expense is different from the user's one.")
         {
         }
 

@@ -56,11 +56,38 @@ namespace Lucca.Services
 
         public async Task<ExpenseDto> InsertAsync(Guid userId, CreateExpenseDto createExpenseDto, CancellationToken cancellationToken = default)
         {
+            if (string.IsNullOrEmpty(createExpenseDto.Comment))
+            {
+                throw new MissingCommentException();
+            }
+
+            if (createExpenseDto.Date < DateTime.Now.AddMonths(-3))
+            {
+                throw new OutOfIntervalExpensesDateException();
+            }
+
+            if (createExpenseDto.Date > DateTime.Now)
+            {
+                throw new ExpensesDateInFuturException();
+            }
+
             var user = await _repositoryManager.UserRepository.GetByIdAsync(userId, cancellationToken);
 
             if (user is null)
             {
                 throw new UserNotFoundException(userId);
+            }
+
+            if (user.Currency_ISO != createExpenseDto.Currency_ISO)
+            {
+                throw new CurrencyIsDifferentFromUserException();
+            }
+
+            var duplicateExpense = _repositoryManager.ExpenseRepository.FindByCondition(expense => expense.Date == createExpenseDto.Date && expense.Amount == createExpenseDto.Amount).FirstOrDefault();
+
+            if (duplicateExpense != null)
+            {
+                throw new DuplicateExpensesException();
             }
 
             var expense = createExpenseDto.ToExpense();

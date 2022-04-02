@@ -14,6 +14,8 @@ namespace Persistence.Configurations
 
             builder.Property(expense => expense.Id).ValueGeneratedOnAdd();
 
+            builder.Property(expense => expense.Amount).HasColumnType("decimal(5,2)");
+
             builder.Property(expense => expense.Comment).IsRequired();
         }
     }

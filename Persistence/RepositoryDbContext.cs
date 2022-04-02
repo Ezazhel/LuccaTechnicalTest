@@ -13,6 +13,9 @@ namespace Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Expense> Expenses { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(RepositoryDbContext).Assembly);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RepositoryDbContext).Assembly);
+        }
     }
 }

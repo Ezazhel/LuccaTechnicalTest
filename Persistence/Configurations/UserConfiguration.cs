@@ -1,6 +1,7 @@
 ﻿using Lucca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Persistence.Configurations
 {
@@ -24,6 +25,22 @@ namespace Persistence.Configurations
                 .WithOne()
                 .HasForeignKey(expense => expense.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasData(
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Anthony",
+                    LastName = "Stark",
+                    Currency_ISO = "USD"
+                },
+                new User
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Romanova ",
+                    LastName = "Natasha ",
+                    Currency_ISO = "RUB"
+                });
         }
     }
 }

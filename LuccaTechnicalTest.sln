@@ -17,9 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucca.Persistence", "Persistence\Lucca.Persistence.csproj", "{E8EE8729-76D7-4E80-9A0A-176F1EBCC6C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucca.Presentation", "Presentation\Lucca.Presentation.csproj", "{34316AF1-E741-4094-AE57-A19B7B010415}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucca.Presentation", "Presentation\Lucca.Presentation.csproj", "{34316AF1-E741-4094-AE57-A19B7B010415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucca.Api", "Api\Lucca.Api.csproj", "{87CAE662-8BBA-4FD9-9C44-EFF56200EF90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucca.Api", "Lucca.Api\Lucca.Api.csproj", "{C19FE627-DEFB-4CD1-9CDD-B9A05CB2FD77}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{09551739-07C3-4FAA-8CDD-F647D901DE28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +53,14 @@ Global
 		{34316AF1-E741-4094-AE57-A19B7B010415}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34316AF1-E741-4094-AE57-A19B7B010415}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34316AF1-E741-4094-AE57-A19B7B010415}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87CAE662-8BBA-4FD9-9C44-EFF56200EF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87CAE662-8BBA-4FD9-9C44-EFF56200EF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87CAE662-8BBA-4FD9-9C44-EFF56200EF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87CAE662-8BBA-4FD9-9C44-EFF56200EF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C19FE627-DEFB-4CD1-9CDD-B9A05CB2FD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C19FE627-DEFB-4CD1-9CDD-B9A05CB2FD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C19FE627-DEFB-4CD1-9CDD-B9A05CB2FD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C19FE627-DEFB-4CD1-9CDD-B9A05CB2FD77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09551739-07C3-4FAA-8CDD-F647D901DE28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09551739-07C3-4FAA-8CDD-F647D901DE28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09551739-07C3-4FAA-8CDD-F647D901DE28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09551739-07C3-4FAA-8CDD-F647D901DE28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,7 +18,7 @@ namespace Lucca.Services
 
         public ExpenseService(IRepositoryManager repositoryManager) => _repositoryManager = repositoryManager;
 
-        public async Task<IEnumerable<ExpenseDto>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default)
         {
             var user = await _repositoryManager.UserRepository.GetByIdAsync(userId, cancellationToken);
 
@@ -27,22 +27,13 @@ namespace Lucca.Services
                 throw new UserNotFoundException(userId);
             }
 
-            IEnumerable<Domain.Entities.Expense> expenses = await _repositoryManager.ExpenseRepository.GetAllExpensesForUserAsync(userId, cancellationToken);
+            IEnumerable<Domain.Entities.Expense> expenses = await _repositoryManager.ExpenseRepository.GetAllExpensesSortedByAsync(userId, orderByParameters, cancellationToken);
 
             var expensesDto = expenses.Select(expense => {
                 var expenseDto = expense.ToExpenseDto();
                 expenseDto.User = user.GetFullName();
                 return expenseDto;
             });
-
-            return expensesDto;
-        }
-
-        public async Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default)
-        {
-            var expenses = await _repositoryManager.ExpenseRepository.GetAllExpensesSortedByAsync(userId, orderByParameters, cancellationToken);
-
-            var expensesDto = expenses.Select(expense => expense.ToExpenseDto());
 
             return expensesDto;
         }
@@ -56,12 +47,13 @@ namespace Lucca.Services
                 throw new UserNotFoundException(userId);
             }
 
-            var expense = await _repositoryManager.ExpenseRepository.GetByIdAsync(expenseId, cancellationToken);
+            var expense = (await _repositoryManager.ExpenseRepository.GetExpensesByConditionAsync(expense => expense.UserId == userId, cancellationToken)).FirstOrDefault();
 
             if (expense is null)
             {
                 throw new ExpenseNotFoundException(expenseId);
             }
+
 
             var expenseDto = expense.ToExpenseDto();
             expenseDto.User = user.GetFullName();

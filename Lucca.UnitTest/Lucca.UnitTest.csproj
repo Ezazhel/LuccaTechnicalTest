@@ -15,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LuccaTechnicalTest\Lucca.Services.Abstractions\Lucca.Services.Abstractions.csproj" />
-    <ProjectReference Include="..\LuccaTechnicalTest\Lucca.Services\Lucca.Services.csproj" />
-    <ProjectReference Include="..\LuccaTechnicalTest\Presentation\Lucca.Presentation.csproj" />
+    <ProjectReference Include="..\Lucca.Services.Abstractions\Lucca.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Lucca.Services\Lucca.Services.csproj" />
+    <ProjectReference Include="..\Presentation\Lucca.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

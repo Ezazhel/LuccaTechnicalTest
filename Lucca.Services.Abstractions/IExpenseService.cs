@@ -9,8 +9,6 @@ namespace Lucca.Services.Abstractions
 {
     public interface IExpenseService
     {
-        Task<IEnumerable<ExpenseDto>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default);
-
         Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default);
 
         Task<ExpenseDto> GetByIdAsync(Guid userId, Guid expenseId, CancellationToken cancellationToken = default);

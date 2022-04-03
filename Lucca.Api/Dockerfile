@@ -18,6 +18,7 @@ COPY . .
 WORKDIR "/src/Lucca.Api"
 RUN dotnet build "Lucca.Api.csproj" -c Release -o /app/build
 
+
 FROM build AS publish
 RUN dotnet publish "Lucca.Api.csproj" -c Release -o /app/publish
 

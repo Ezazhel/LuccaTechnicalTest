@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Lucca.Domain.Exceptions.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace Lucca.Domain.Exceptions
 {
     [Serializable]
-    public sealed class DuplicateExpensesException : Exception
+    public sealed class DuplicateExpensesException : BadRequestException
     {
         public DuplicateExpensesException() : base("This expense is duplicate.")
-        {
-        }
-
-        public DuplicateExpensesException(string message, Exception innerException) : base(message, innerException)
         {
         }
 

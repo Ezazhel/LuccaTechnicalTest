@@ -1,3 +1,4 @@
+using Lucca.Api.Middleware;
 using Lucca.Domain.Repositories;
 using Lucca.Services;
 using Lucca.Services.Abstractions;
@@ -39,6 +40,8 @@ namespace Lucca.Api
                 var connectionString = Configuration.GetConnectionString("Database");
                 builder.UseSqlServer(connectionString);
             });
+
+            services.AddTransient<ExceptionHandlingMiddleware>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,8 @@ namespace Lucca.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web v1"));
             }
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseRouting();
 

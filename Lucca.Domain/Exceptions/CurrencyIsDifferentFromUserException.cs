@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Lucca.Domain.Exceptions.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace Lucca.Domain.Exceptions
 {
     [Serializable]
-    public sealed class CurrencyIsDifferentFromUserException : Exception
+    public sealed class CurrencyIsDifferentFromUserException : BadRequestException
     {
         public CurrencyIsDifferentFromUserException() : base("The currency for this expense is different from the user's one.")
-        {
-        }
-
-        public CurrencyIsDifferentFromUserException(string message, Exception innerException) : base(message, innerException)
         {
         }
 

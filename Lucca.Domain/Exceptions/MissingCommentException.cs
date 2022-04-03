@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Lucca.Domain.Exceptions.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace Lucca.Domain.Exceptions
 {
     [Serializable]
-    public sealed class MissingCommentException : Exception
+    public sealed class MissingCommentException : BadRequestException
     {
         public MissingCommentException() : base("The property Comment is mandatory to create an expense")
-        {
-        }
-
-        public MissingCommentException(string message, Exception innerException) : base(message, innerException)
         {
         }
 

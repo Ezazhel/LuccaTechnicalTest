@@ -10,8 +10,8 @@ using Persistence;
 namespace Lucca.Persistence.Migrations
 {
     [DbContext(typeof(RepositoryDbContext))]
-    [Migration("20220402212707_SeedInitialData")]
-    partial class SeedInitialData
+    [Migration("20220403194118_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,14 +78,14 @@ namespace Lucca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e66cc197-32d6-40f6-a588-53f05d6c0179"),
+                            Id = new Guid("bf57ab6d-fd05-4b64-a878-3867c90f6fad"),
                             Currency_ISO = "USD",
                             LastName = "Stark",
                             Name = "Anthony"
                         },
                         new
                         {
-                            Id = new Guid("b762682e-f1be-4163-848d-731d646b29e1"),
+                            Id = new Guid("c45f61df-73b5-4d23-991a-29e513f7da4f"),
                             Currency_ISO = "RUB",
                             LastName = "Natasha ",
                             Name = "Romanova "

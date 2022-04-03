@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Lucca.Persistence.Migrations
 {
-    public partial class SeedInitialData : Migration
+    public partial class SeedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,12 +47,12 @@ namespace Lucca.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Currency_ISO", "LastName", "Name" },
-                values: new object[] { new Guid("e66cc197-32d6-40f6-a588-53f05d6c0179"), "USD", "Stark", "Anthony" });
+                values: new object[] { new Guid("bf57ab6d-fd05-4b64-a878-3867c90f6fad"), "USD", "Stark", "Anthony" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Currency_ISO", "LastName", "Name" },
-                values: new object[] { new Guid("b762682e-f1be-4163-848d-731d646b29e1"), "RUB", "Natasha ", "Romanova " });
+                values: new object[] { new Guid("c45f61df-73b5-4d23-991a-29e513f7da4f"), "RUB", "Natasha ", "Romanova " });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Expense_UserId",

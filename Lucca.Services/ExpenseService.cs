@@ -20,11 +20,22 @@ namespace Lucca.Services
 
         public async Task<IEnumerable<ExpenseDto>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default)
         {
+            var user = await _repositoryManager.UserRepository.GetByIdAsync(userId, cancellationToken);
+
+            if (user is null)
+            {
+                throw new UserNotFoundException(userId);
+            }
+
             IEnumerable<Domain.Entities.Expense> expenses = await _repositoryManager.ExpenseRepository.GetAllExpensesForUserAsync(userId, cancellationToken);
 
-            var expenseDto = expenses.Select(expense => expense.ToExpenseDto());
+            var expensesDto = expenses.Select(expense => {
+                var expenseDto = expense.ToExpenseDto();
+                expenseDto.User = user.GetFullName();
+                return expenseDto;
+            });
 
-            return expenseDto;
+            return expensesDto;
         }
 
         public async Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default)

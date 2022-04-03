@@ -5,29 +5,23 @@ namespace Lucca.Services.Extensions
 {
     public static class ExpenseExtension
     {
-        public static ExpenseDto ToExpenseDto(this Expense expense)
+        public static ExpenseDto ToExpenseDto(this Expense expense) => new ExpenseDto()
         {
-            return new ExpenseDto()
-            {
-                Id = expense.Id,
-                Amount = expense.Amount,
-                Category = expense.Category.ToString(),
-                Comment = expense.Comment,
-                Currency_ISO = expense.Currency_ISO,
-                Date = expense.Date,
-            };
-        }
+            Id = expense.Id,
+            Amount = expense.Amount,
+            Category = expense.Category.ToString(),
+            Comment = expense.Comment,
+            Currency_ISO = expense.Currency_ISO,
+            Date = expense.Date,
+        };
 
-        public static Expense ToExpense(this CreateExpenseDto expense)
+        public static Expense ToExpense(this CreateExpenseDto expense) => new Expense()
         {
-            return new Expense()
-            {
-                Amount = expense.Amount,
-                Category = (Category)expense.Category,
-                Comment = expense.Comment,
-                Currency_ISO = expense.Currency_ISO,
-                Date = expense.Date,
-            };
-        }
+            Amount = expense.Amount,
+            Category = (Category)expense.Category,
+            Comment = expense.Comment,
+            Currency_ISO = expense.Currency_ISO,
+            Date = expense.Date,
+        };
     }
 }

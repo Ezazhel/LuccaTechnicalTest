@@ -83,7 +83,7 @@ namespace Lucca.Services
                 throw new CurrencyIsDifferentFromUserException();
             }
 
-            var duplicateExpense = _repositoryManager.ExpenseRepository.FindByCondition(expense => expense.Date == createExpenseDto.Date && expense.Amount == createExpenseDto.Amount).FirstOrDefault();
+            var duplicateExpense = (await _repositoryManager.ExpenseRepository.GetExpensesByConditionAsync(expense => expense.Date == createExpenseDto.Date && expense.Amount == createExpenseDto.Amount)).FirstOrDefault();
 
             if (duplicateExpense != null)
             {

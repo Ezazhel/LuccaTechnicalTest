@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace Persistence.Repositories
         {
         }
 
-        public async Task<IEnumerable<Expense>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default) => await FindByCondition(expense => expense.UserId.Equals(userId)).ToListAsync();
+        public async Task<IEnumerable<Expense>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default) => await FindByCondition(expense => expense.UserId.Equals(userId)).ToListAsync(cancellationToken);
 
         public async Task<IEnumerable<Expense>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default)
         {
@@ -28,9 +29,11 @@ namespace Persistence.Repositories
                 _ => throw new NotImplementedException(),
             };
 
-            return await expensesOrdered.ToListAsync();
+            return await expensesOrdered.ToListAsync(cancellationToken);
         }
 
-        public async Task<Expense> GetByIdAsync(Guid expenseId, CancellationToken cancellationToken = default) => await FindByCondition(expense => expense.Id.Equals(expenseId)).FirstOrDefaultAsync();
+        public async Task<IEnumerable<Expense>> GetExpensesByConditionAsync(Expression<Func<Expense, bool>> expression, CancellationToken cancellationToken = default) => await FindByCondition(expression).ToListAsync(cancellationToken);
+
+        public async Task<Expense> GetByIdAsync(Guid expenseId, CancellationToken cancellationToken = default) => await FindByCondition(expense => expense.Id.Equals(expenseId)).FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -3,5 +3,6 @@
     public interface IServiceManager
     {
         IExpenseService ExpenseService { get; }
+        IUserService UserService { get; }
     }
 }

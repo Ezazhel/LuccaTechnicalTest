@@ -29,14 +29,14 @@ namespace Persistence.Configurations
             builder.HasData(
                 new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("BF57AB6D-FD05-4B64-A878-3867C90F6FAD"),
                     Name = "Anthony",
                     LastName = "Stark",
                     Currency_ISO = "USD"
                 },
                 new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = new Guid("C45F61DF-73B5-4D23-991A-29E513F7DA4F"),
                     Name = "Romanova ",
                     LastName = "Natasha ",
                     Currency_ISO = "RUB"

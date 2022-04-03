@@ -1,4 +1,6 @@
-﻿using Lucca.Domain.Repositories;
+﻿using Lucca.Domain.Entities;
+using Lucca.Domain.Repositories;
+using Lucca.Persistence.Helper;
 using System;
 
 namespace Persistence.Repositories
@@ -11,7 +13,7 @@ namespace Persistence.Repositories
 
         public RepositoryManager(RepositoryDbContext repositoryDbContext)
         {
-            _lazyExpenseRepository = new Lazy<IExpenseRepository>(() => new ExpenseRepository(repositoryDbContext));
+            _lazyExpenseRepository = new Lazy<IExpenseRepository>(() => new ExpenseRepository(repositoryDbContext, new SortHelper<Expense>()));
             _lazyUnitOfWork = new Lazy<IUnitOfWork>(() => new UnitOfWork(repositoryDbContext));
             _lazyUserRepository = new Lazy<IUserRepository>(() => new UserRepository(repositoryDbContext));
         }

@@ -1,4 +1,5 @@
-﻿using Lucca.Services.Abstractions;
+﻿using Lucca.Domain.Model;
+using Lucca.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,15 @@ namespace Lucca.Presentation.Controllers
             var expense = await _serviceManager.ExpenseService.GetByIdAsync(userId, expenseId, cancellationToken);
 
             return Ok(expense);
+        }
+
+        [HttpGet]
+        [Route("/orderBy={string}")]
+        public async Task<IActionResult> GetExpensesSortedBy(Guid userId, [FromQuery] ExpenseParameters expenseParameters, CancellationToken cancellationToken)
+        {
+            IEnumerable<Contracts.ExpenseDto> expenses = await _serviceManager.ExpenseService.GetAllExpensesSortedByAsync(userId, expenseParameters, cancellationToken);
+
+            return Ok(expenses);
         }
 
         [HttpPost]

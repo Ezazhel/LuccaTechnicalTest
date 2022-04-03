@@ -1,6 +1,7 @@
 ﻿using Lucca.Domain.Entities;
-using Lucca.Domain.Enums;
+using Lucca.Domain.Model;
 using Lucca.Domain.Repositories;
+using Lucca.Persistence.Helper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,23 +14,22 @@ namespace Persistence.Repositories
 {
     internal sealed class ExpenseRepository : RepositoryBase<Expense>, IExpenseRepository
     {
-        public ExpenseRepository(RepositoryDbContext repositoryDbContext) : base(repositoryDbContext)
+        private readonly ISortHelper<Expense> _sortHelper;
+
+        public ExpenseRepository(RepositoryDbContext repositoryDbContext, ISortHelper<Expense> sortHelper) : base(repositoryDbContext)
         {
+            _sortHelper = sortHelper;
         }
 
         public async Task<IEnumerable<Expense>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default) => await FindByCondition(expense => expense.UserId.Equals(userId)).ToListAsync(cancellationToken);
 
-        public async Task<IEnumerable<Expense>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Expense>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default)
         {
-            var expenses = FindAll();
-            var expensesOrdered = sortProperty switch
-            {
-                ExpenseSort.Amount => expenses.OrderBy(expense => expense.Amount),
-                ExpenseSort.Date => expenses.OrderBy(expense => expense.Date),
-                _ => throw new NotImplementedException(),
-            };
+            IQueryable<Expense> expenses = FindByCondition(expense => expense.UserId.Equals(userId));
 
-            return await expensesOrdered.ToListAsync(cancellationToken);
+            expenses = _sortHelper.ApplySort(expenses, orderByParameters.OrderBy);
+
+            return await expenses.ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<Expense>> GetExpensesByConditionAsync(Expression<Func<Expense, bool>> expression, CancellationToken cancellationToken = default) => await FindByCondition(expression).ToListAsync(cancellationToken);

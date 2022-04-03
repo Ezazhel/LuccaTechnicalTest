@@ -1,5 +1,5 @@
 ﻿using Lucca.Domain.Entities;
-using Lucca.Domain.Enums;
+using Lucca.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -13,7 +13,7 @@ namespace Lucca.Domain.Repositories
     {
         Task<IEnumerable<Expense>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<Expense>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Expense>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<Expense>> GetExpensesByConditionAsync(Expression<Func<Expense, bool>> expression, CancellationToken cancellationToken = default);
 

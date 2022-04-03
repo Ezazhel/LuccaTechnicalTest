@@ -1,5 +1,5 @@
 ﻿using Lucca.Contracts;
-using Lucca.Domain.Enums;
+using Lucca.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -11,7 +11,7 @@ namespace Lucca.Services.Abstractions
     {
         Task<IEnumerable<ExpenseDto>> GetAllExpensesForUserAsync(Guid userId, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default);
+        Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default);
 
         Task<ExpenseDto> GetByIdAsync(Guid userId, Guid expenseId, CancellationToken cancellationToken = default);
 

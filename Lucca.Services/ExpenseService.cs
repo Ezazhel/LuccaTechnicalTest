@@ -1,6 +1,6 @@
 ﻿using Lucca.Contracts;
-using Lucca.Domain.Enums;
 using Lucca.Domain.Exceptions;
+using Lucca.Domain.Model;
 using Lucca.Domain.Repositories;
 using Lucca.Services.Abstractions;
 using Lucca.Services.Extensions;
@@ -27,9 +27,13 @@ namespace Lucca.Services
             return expenseDto;
         }
 
-        public Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(ExpenseSort sortProperty, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<ExpenseDto>> GetAllExpensesSortedByAsync(Guid userId, ExpenseParameters orderByParameters, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var expenses = await _repositoryManager.ExpenseRepository.GetAllExpensesSortedByAsync(userId, orderByParameters, cancellationToken);
+
+            var expensesDto = expenses.Select(expense => expense.ToExpenseDto());
+
+            return expensesDto;
         }
 
         public async Task<ExpenseDto> GetByIdAsync(Guid userId, Guid expenseId, CancellationToken cancellationToken = default)
